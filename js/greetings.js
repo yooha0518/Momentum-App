@@ -14,9 +14,18 @@ function onLoginSubmit(event) {
   paintGreetings(username);
 } 
 
+function logoff(){
+  localStorage.removeItem("username");
+  window.location.reload();
+}
+
 function paintGreetings(username) {
-  greeting.innerText = `Hello ${username}`;
+  greeting.innerText = `안녕하세요, ${username}님`;
   greeting.classList.remove(HIDDEN_CLASSNAME);
+  const logout = document.createElement("button");
+  logout.innerText = "로그아웃";
+  logout.addEventListener("click",logoff);
+  greeting.appendChild(logout);
 }
 
 loginForm.addEventListener("submit", onLoginSubmit);
